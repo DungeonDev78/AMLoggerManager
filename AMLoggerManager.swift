@@ -48,13 +48,16 @@ public class AMLoggerManager {
         return edgePan
     }()
 
+    fileprivate var title = "LOGGER"
+
     // MARK: - Public methods
 
     /// Configure the manager with a specific gesture used to show the UITableViewController
     ///
     /// - Parameter gesture: the custom gesture choosen
-    public func configure(gesture: UIGestureRecognizer) {
+    public func configure(gesture: UIGestureRecognizer, title: String? = nil) {
         self.gesture = gesture
+        self.title = title ?? "LOGGER"
     }
 
     /// Add an item to the logger
@@ -77,14 +80,14 @@ class AMLoggerController: UITableViewController {
     private let darkTransparentBlack = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5932148973)
 
     // MARK: - Presenting static method
-    class func presentFrom(_ parentVC: UIViewController, title: String? = "LOGGER") {
+    class func presentFrom(_ parentVC: UIViewController, title: String) {
         let navController = UINavigationController()
         let tvc: AMLoggerController = AMLoggerController()
         navController.pushViewController(tvc, animated: false)
         navController.modalPresentationStyle = .overFullScreen
         navController.modalTransitionStyle = .crossDissolve
 
-        tvc.title = title
+        tvc.title = AMLoggerManager.shared.title
         parentVC.present(navController, animated: true, completion: nil)
     }
 
