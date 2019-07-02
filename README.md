@@ -54,6 +54,11 @@ override func viewDidLoad() {
 }
 ```
 
+You can also use an optional title:
+```
+AMLoggerManager.shared.configure(title: "NEW TITLE")
+```
+
 The default gesture is a **UIScreenEdgePanGesture** but you can configure it as pleased:
 ```
 let tapGesture = UITapGestureRecognizer()
